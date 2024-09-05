@@ -1,0 +1,3 @@
+If we upload a file it show us a link and want to redirect us. In this case I could use script as an upload and then request the password
+So I created a php basic scrip with just a line require "/etc/natas_webpass/natas13"
+Then upload it and if I want to execute it, I need to change the extension by inspecting the elements

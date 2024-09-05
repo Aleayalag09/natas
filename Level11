@@ -1,0 +1,7 @@
+Very complicated encripting problem solved following this steps
+Take the cookie that the website gave to you
+Create a cycle in which you apply xor encryption between the cookie value b64decoded and this {"showpassword":"no","bgcolor":"#ffffff"}
+The output is going to reveal a patern which is the key of the origianl xor encrypted funciton
+Then you have to create an array( "showpassword"=>"yes", "bgcolor"=>"#ffffff") and apply json_decode, xor_encrypt (with the key of the previos step), base64_encode
+This new value will be the cookie that you have to put in the browser and then when you reload the page there is the password of the next level
+yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB
